@@ -1,0 +1,15 @@
+{
+  "private": "true",
+  "name": "immunify",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Akanimoh Osutuk",
+  "license": "MIT",
+  "workspaces": [
+    "packages/ingestion-engine",
+    "packages/contracts"
+  ],
+  "scripts": {
+    "compile:contracts": "yarn workspace @immunify/contracts run build"
+  }
+}

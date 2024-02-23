@@ -1,0 +1,9 @@
+{
+  "name": "@immunify/contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "aptos move compile"
+  }
+}
