@@ -1,6 +1,6 @@
 #![allow(unused)]
 
-use axum::response::IntoResponse;
+use axum::response::{ IntoResponse, Response };
 use axum::{
     routing::get,
     Router,
@@ -10,8 +10,10 @@ use axum::extract::{
     Query,
     Path
 };
+use axum::middleware;
 use serde::Deserialize;
 use tower_http::services::ServeDir;
+use tower_cookies::CookieManagerLayer;
 
 pub use self::error::{ Error, Result };
 
@@ -24,6 +26,8 @@ async fn main() {
     let routes_all = Router::new()
         .merge(routes_hello())
         .merge(web::routes_login::routes())
+        .layer(middleware::map_response(main_response_mapper))
+        .layer(CookieManagerLayer::new())
         .fallback_service(routes_static());
 
 
@@ -34,6 +38,13 @@ async fn main() {
     axum::serve(addr, routes_all)
         .await
         .unwrap();
+}
+
+async fn main_response_mapper(res: Response) -> Response {
+    println!("->> {:<12} - main_response_mapper", "RES_MAPPER");
+
+    println!();
+    res
 }
 
 fn routes_static() -> Router {
