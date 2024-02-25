@@ -1,2 +1,4 @@
 packages/contracts/.aptos/config.yaml
 packages/contracts/build
+
+packages/ingestion-engine/target

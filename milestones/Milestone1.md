@@ -1,0 +1,21 @@
+# Milestone Delivery
+
+* **Milestone Number:** 1
+
+**Context**
+
+Conceptualized and created an MH-ORM alongside a structured storage system for medical data.
+
+**Deliverables**
+
+| Number                | Deliverable                              | Link                                                                                                                                  | Notes                                                                                                                                                                                                                                                                                                                  |
+|-----------------------|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.    | License                                  | [LICENSE](https://github.com/bsn-si/LICENSE)                                                               | Apache 2.0 license                                                                                                                                                                                                                                                                                                     |
+| 2.    | Readme Guide                            | [Readme.md](https://github.com//README.md#how-to)                                                    | "Setup Guide" guide                                                                                                                                                                                                                                                                                                         |
+| 3. | Storage Design       | [See Ingestion-Engine/Storage](https://Milestone_1/1_Storage/README.md)            | We plan to utilize IPFS (InterPlanetary File System) as the Electronic Health Record (EHR) document repository for this project.                                                                                                                                                           | 
+| 4. | Implement index storage              | [See Ingestion-Engine/Index_storage](https://githreadme)     | To maintain the indexes, the intention is to develop a dedicated smart contract on the blockchain, ensuring security, data immutability, and rapid access. Every document integrated into the system undergoes encryption utilizing the AES-GCM (Advanced Encryption Standard - Galois/Counter Mode) algorithm. A unique key is generated for each document.                   | 
+| 5. | Data Encryption                  | [See Ingestion-Engine/Encryption](https://github.s/Milestone_1/3_Encryption/README.md)      | When archived in the repository, EHR documents undergo pre-encryption using the AES-GCM (Advanced Encryption Standard - Galois/Counter Mode) algorithm, which includes message authentication. Each document is encrypted with a distinct key, comprising a random 256-bit sequence (32 bytes) along with a unique 96-bit sequence (12 bytes). The Document ID serves as the authentication tag. |                                                                                                 |                                                                                                    | 
+| 6. | API                                      | [See Ingestion-Engine/API](https://github.com/bsn-si/IPEHR-gateway/tree/develop/progress/Milestone_1/6_API)                              | The initial version of the REST API has been developed to facilitate document management in accordance with the most recent stable iteration of the openEHR specification. Subsequent milestones will expand the API with additional methods to achieve full compliance with openEHR specifications.                               | 
+|
+
+### Project introduction:
