@@ -1,5 +1,6 @@
 #![allow(unused)]
 
+use crate::model::ModelController;
 use axum::response::{ IntoResponse, Response };
 use axum::{
     routing::get,
@@ -8,7 +9,7 @@ use axum::{
 use axum::routing::get_service;
 use axum::extract::{
     Query,
-    Path
+    Path,
 };
 use axum::middleware;
 use serde::Deserialize;
@@ -19,13 +20,16 @@ pub use self::error::{ Error, Result };
 
 mod error;
 mod web;
+mod model;
 
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<()> {
+    let mc = ModelController::new().await?;
 
     let routes_all = Router::new()
         .merge(routes_hello())
         .merge(web::routes_login::routes())
+        .nest("/api", web::routes_ehr::routes(mc.clone()))
         .layer(middleware::map_response(main_response_mapper))
         .layer(CookieManagerLayer::new())
         .fallback_service(routes_static());
@@ -38,6 +42,8 @@ async fn main() {
     axum::serve(addr, routes_all)
         .await
         .unwrap();
+
+    Ok(())
 }
 
 async fn main_response_mapper(res: Response) -> Response {

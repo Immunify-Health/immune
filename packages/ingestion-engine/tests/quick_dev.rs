@@ -26,5 +26,18 @@ async fn quick_dev() -> Result<()> {
 
     req_login.await?.print().await?;
 
+
+    // let req_create_ticket = hc.do_post(
+    //     "/api/ehr",
+    //     json!({
+    //         "title": "akanimoh osutuk 1",
+    //     })
+    // );
+
+    // req_create_ticket.await?.print().await?;
+
+    hc.do_get("/api/ehr").await?.print().await?;
+
+
     Ok(())
 }
