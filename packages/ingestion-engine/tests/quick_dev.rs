@@ -1,9 +1,7 @@
 #![allow(unused)]
-
-use anyhow::Result;
-use httpc_test;
 use serde_json::json;
 
+use anyhow::Result;
 #[tokio::test]
 async fn quick_dev() -> Result<()> {
     let hc = httpc_test::new_client("http://localhost:3000")?;
