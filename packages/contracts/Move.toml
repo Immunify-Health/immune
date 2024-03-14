@@ -4,13 +4,17 @@ version = "1.0.0"
 authors = []
 
 [addresses]
-immune_addr='7fb2558df47a4b6afdf46089eccbb6b2e4c2fd0808c13f2a059e8ba3a8980726'
+immune_addr='4feaea08f9a4ef2451f3dcba8b0e269c4dc789a39eca5bf3179155d74c4ee4ce'
 
 [dev-addresses]
 
-[dependencies.AptosFramework]
-git = "https://github.com/aptos-labs/aptos-core.git"
-rev = "mainnet"
-subdir = "aptos-move/framework/aptos-framework"
+# [dependencies.AptosFramework]
+# git = "https://github.com/aptos-labs/aptos-core.git"
+# rev = "devnet"
+# subdir = "aptos-move/framework/aptos-framework"
+
+[dependencies]
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework", rev = "devnet" }
+# aptos-types = {version = "0.0.3"}
 
 [dev-dependencies]
