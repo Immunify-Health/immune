@@ -83,7 +83,7 @@ module immune_addr::ehrIndexer {
     }
 
     /// Represents an indexer for managing users, user groups, and related entities within the patient record system.
-    struct Indexer {
+    struct Indexer has key {
         /// Mapping from addresses to user information within the patient record system.
         users: SimpleMap<address, User>,
         /// Mapping from user identifiers to EHR users within the patient record system.
@@ -102,27 +102,22 @@ module immune_addr::ehrIndexer {
     }
 
     public entry fun setEhrUser(
+        addr: address,
         userId: u8,
         ehrId: u64,
         message: vector<u8>,
-        signatory: signer,
+        signatory: vector<u8>,
         signature: vector<u8>,
-    ) {
+    ) acquires Indexer {
 
         // let nonce = randomness::u64_integer();
         let parse_sig: secp256k1::ECDSASignature = secp256k1::ecdsa_signature_from_bytes(signature);
 
-        // let inputs = vector[
-        //     b"setEhrUser",
-        //     userId,
-        //     ehrId,
-        //     nonce
-        // ];
+        let verify = option::destroy_some(secp256k1::ecdsa_recover(message, userId, &parse_sig));
+        let pk_to_bytes = secp256k1::ecdsa_raw_public_key_to_bytes(&verify);
+        assert!(pk_to_bytes == signatory, SIG);
 
-        // let hash_msg = aptos_hash::
-        let verify = secp256k1::ecdsa_recover(message, userId, &parse_sig);
-        // let pk_to_bytes = secp256k1::ecdsa_raw_public_key_to_bytes(&verify);
-        // assert!()
+        borrow_global<Indexer>(addr).ehrUsers
 
     }
 
